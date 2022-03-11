@@ -29,11 +29,25 @@ class HomeViewController: UIViewController {
         
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 225))
         homeFeedTable.tableHeaderView = headerView
+        
+        Task {
+            await getTrendingMovies()
+        }
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         homeFeedTable.frame = view.bounds
+    }
+    
+    private func getTrendingMovies() async {
+        do {
+            let response = try await APICaller.shared.getTrendingMovies()
+        } catch APIError.failedToGetData {
+            // Show an alert or something
+        } catch {
+            
+        }
     }
     
     private func configureNavBar() {

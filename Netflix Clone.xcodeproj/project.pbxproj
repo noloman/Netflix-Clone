@@ -17,6 +17,8 @@
 		3221816427DB528F00CD7C16 /* DownloadsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221816327DB528F00CD7C16 /* DownloadsViewController.swift */; };
 		3221816827DB55DD00CD7C16 /* CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221816727DB55DD00CD7C16 /* CollectionViewTableViewCell.swift */; };
 		3221816A27DB77F000CD7C16 /* HeroHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221816927DB77F000CD7C16 /* HeroHeaderUIView.swift */; };
+		32B1B32A27DB943700A829AB /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B1B32927DB943700A829AB /* APICaller.swift */; };
+		32B1B32D27DB9DF800A829AB /* Codables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B1B32C27DB9DF800A829AB /* Codables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,8 @@
 		3221816327DB528F00CD7C16 /* DownloadsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadsViewController.swift; sourceTree = "<group>"; };
 		3221816727DB55DD00CD7C16 /* CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCell.swift; sourceTree = "<group>"; };
 		3221816927DB77F000CD7C16 /* HeroHeaderUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroHeaderUIView.swift; sourceTree = "<group>"; };
+		32B1B32927DB943700A829AB /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
+		32B1B32C27DB9DF800A829AB /* Codables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Codables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +72,8 @@
 				3221814827DB50AF00CD7C16 /* AppDelegate.swift */,
 				3221814A27DB50AF00CD7C16 /* SceneDelegate.swift */,
 				3221815127DB50B300CD7C16 /* Assets.xcassets */,
+				32B1B32827DB942800A829AB /* Managers */,
+				32B1B32B27DB9DEE00A829AB /* Models */,
 				3221816027DB520000CD7C16 /* View Controllers */,
 				3221816627DB558B00CD7C16 /* View Models */,
 				3221816527DB558800CD7C16 /* Views */,
@@ -101,6 +107,22 @@
 			children = (
 			);
 			path = "View Models";
+			sourceTree = "<group>";
+		};
+		32B1B32827DB942800A829AB /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				32B1B32927DB943700A829AB /* APICaller.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		32B1B32B27DB9DEE00A829AB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				32B1B32C27DB9DF800A829AB /* Codables.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -173,10 +195,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				3221816227DB521700CD7C16 /* UpcomingViewController.swift in Sources */,
+				32B1B32A27DB943700A829AB /* APICaller.swift in Sources */,
 				3221815F27DB51FE00CD7C16 /* SearchViewController.swift in Sources */,
 				3221816827DB55DD00CD7C16 /* CollectionViewTableViewCell.swift in Sources */,
 				3221816A27DB77F000CD7C16 /* HeroHeaderUIView.swift in Sources */,
 				3221816427DB528F00CD7C16 /* DownloadsViewController.swift in Sources */,
+				32B1B32D27DB9DF800A829AB /* Codables.swift in Sources */,
 				3221814D27DB50AF00CD7C16 /* MainTabBarViewController.swift in Sources */,
 				3221814927DB50AF00CD7C16 /* AppDelegate.swift in Sources */,
 				3221814B27DB50AF00CD7C16 /* SceneDelegate.swift in Sources */,
