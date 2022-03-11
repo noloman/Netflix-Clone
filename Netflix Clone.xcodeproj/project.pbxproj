@@ -162,7 +162,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3221815227DB50B300CD7C16 /* Assets.xcassets in Resources */,
-				3221815027DB50AF00CD7C16 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,17 +184,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		3221814E27DB50AF00CD7C16 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3221814F27DB50AF00CD7C16 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		3221815727DB50B300CD7C16 /* Debug */ = {
