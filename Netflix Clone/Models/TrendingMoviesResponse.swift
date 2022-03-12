@@ -6,7 +6,7 @@
 //
 
 import Foundation
-// let movies = try? newJSONDecoder().decode(Movies.self, from: jsonData)
+
 // MARK: - Movies
 struct TrendingMoviesResponse: Codable {
     let page: Int
@@ -28,17 +28,16 @@ struct Result: Codable {
     let backdropPath: String
     let genreIDS: [Int]
     let voteCount: Int
-    let originalLanguage: OriginalLanguage
     let originalTitle: String?
-    let posterPath: String
+    let posterPath: String?
     let video: Bool?
     let id: Int
     let voteAverage: Double
     let title: String?
     let popularity: Double
-    let mediaType: MediaType
-    let firstAirDate, name, originalName: String?
-    let originCountry: [String]?
+    let mediaType: MediaType?
+    let firstAirDate, name: String?
+    let originalName: String?
 
     enum CodingKeys: String, CodingKey {
         case overview
@@ -47,7 +46,6 @@ struct Result: Codable {
         case backdropPath = "backdrop_path"
         case genreIDS = "genre_ids"
         case voteCount = "vote_count"
-        case originalLanguage = "original_language"
         case originalTitle = "original_title"
         case posterPath = "poster_path"
         case video, id
@@ -57,17 +55,5 @@ struct Result: Codable {
         case firstAirDate = "first_air_date"
         case name
         case originalName = "original_name"
-        case originCountry = "origin_country"
     }
-}
-
-enum MediaType: String, Codable {
-    case movie = "movie"
-    case tv = "tv"
-}
-
-enum OriginalLanguage: String, Codable {
-    case da = "da"
-    case en = "en"
-    case pl = "pl"
 }

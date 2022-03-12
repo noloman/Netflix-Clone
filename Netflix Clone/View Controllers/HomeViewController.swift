@@ -7,6 +7,14 @@
 
 import UIKit
 
+enum Sections: Int {
+    case TrendingMovies = 0
+    case TrendingTv = 1
+    case Popular = 2
+    case Upcoming = 3
+    case TopRated = 4
+}
+
 class HomeViewController: UIViewController {
     
     let sectionTitles: [String] = ["Popular", "Trending movies", "Trending tv", "Upcoming movies", "Top rated"]
@@ -29,10 +37,6 @@ class HomeViewController: UIViewController {
         
         let headerView = HeroHeaderUIView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 225))
         homeFeedTable.tableHeaderView = headerView
-        
-        Task {
-            await getTrendingMovies()
-        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -40,14 +44,59 @@ class HomeViewController: UIViewController {
         homeFeedTable.frame = view.bounds
     }
     
-    private func getTrendingMovies() async {
+    private func getTrendingMovies() async -> TrendingMoviesResponse? {
         do {
-            let response = try await APICaller.shared.getTrendingMovies()
+            return try await APICaller.shared.getTrendingMovies()
         } catch APIError.failedToGetData {
             // Show an alert or something
-        } catch {
-            
+        } catch(let error) {
+            print(error)
         }
+        return nil
+    }
+    
+    private func getTrendingShows() async -> TrendingShowsResponse? {
+        do {
+            return try await APICaller.shared.getTrendingShows()
+        } catch APIError.failedToGetData {
+            // Show an alert or something
+        } catch(let error) {
+            print(error)
+        }
+        return nil
+    }
+    
+    private func getUpcomingMovies() async -> TrendingMoviesResponse? {
+        do {
+            return try await APICaller.shared.getUpcomingMovies()
+        } catch APIError.failedToGetData {
+            // Show an alert or something
+        } catch(let error) {
+            print(error)
+        }
+        return nil
+    }
+    
+    private func getPopularMovies() async -> TrendingMoviesResponse? {
+        do {
+            return try await APICaller.shared.getPopularMovies()
+        } catch APIError.failedToGetData {
+            // Show an alert or something
+        } catch(let error) {
+            print(error)
+        }
+        return nil
+    }
+    
+    private func getTopRatedMovies() async -> TrendingMoviesResponse?{
+        do {
+            return try await APICaller.shared.getTopRatedMovies()
+        } catch APIError.failedToGetData {
+            // Show an alert or something
+        } catch(let error) {
+            print(error)
+        }
+        return nil
     }
     
     private func configureNavBar() {
@@ -77,6 +126,47 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()
         }
+        
+        switch indexPath.section {
+        case Sections.Popular.rawValue:
+            Task {
+                let movies: TrendingMoviesResponse? = await getPopularMovies()
+                if let results = movies?.results {
+                    cell.configure(with: results)
+                }
+            }
+        case Sections.TopRated.rawValue:
+            Task {
+                let movies: TrendingMoviesResponse? = await getTopRatedMovies()
+                if let results = movies?.results {
+                    cell.configure(with: results)
+                }
+            }
+        case Sections.Upcoming.rawValue:
+            Task {
+                let movies: TrendingMoviesResponse? = await getUpcomingMovies()
+                if let results = movies?.results {
+                    cell.configure(with: results)
+                }
+            }
+        case Sections.TrendingMovies.rawValue:
+            Task {
+                let movies: TrendingMoviesResponse? = await getTrendingMovies()
+                if let results = movies?.results {
+                    cell.configure(with: results)
+                }
+            }
+        case Sections.TrendingTv.rawValue:
+            Task {
+                let shows: TrendingShowsResponse? = await getTrendingShows()
+                if let results = shows?.results {
+                    cell.configure(with: results)
+                }
+            }
+        default:
+            return UITableViewCell()
+        }
+        
         return cell
     }
     
