@@ -13,7 +13,7 @@ class TitleTableViewCell: UITableViewCell {
     
     private let playButton: UIButton = {
        let button = UIButton()
-        let image = UIImage(systemName: "play.circle", withConfiguration: UIImage.SymbolConfiguration.init(pointSize: 40))
+        let image = UIImage(systemName: "play.circle", withConfiguration: UIImage.SymbolConfiguration.init(pointSize: 30))
         button.setImage(image, for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -23,6 +23,7 @@ class TitleTableViewCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
         return imageView
     }()
     
@@ -50,7 +51,7 @@ class TitleTableViewCell: UITableViewCell {
         ]
         
         let titleUILabelConstraints = [
-            titleLabel.leadingAnchor.constraint(equalTo: titlePoster.trailingAnchor, constant: 20),
+            titleLabel.leadingAnchor.constraint(equalTo: titlePoster.trailingAnchor, constant: 5),
             titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
         ]
         
