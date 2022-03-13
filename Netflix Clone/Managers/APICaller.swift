@@ -48,4 +48,17 @@ class APICaller {
         let (data, _) = try await URLSession.shared.data(from: url)
         return try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
     }
+    
+    func getDiscoverMovies() async throws -> TrendingMoviesResponse? {
+        guard let url = URL(string: "\(Constants.baseURL)/3/discover/movie?api_key=\(Constants.API_KEY)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate") else { return nil }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
+    }
+    
+    func search(_ query: String) async throws -> TrendingMoviesResponse? {
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return nil }
+        guard let url = URL(string: "\(Constants.baseURL)/3/search/movie?api_key=\(Constants.API_KEY)&query=\(query)") else { return nil }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
+    }
 }
