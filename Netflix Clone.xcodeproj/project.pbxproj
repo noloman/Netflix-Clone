@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3204ED0727DE138500D4931F /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3204ED0627DE138500D4931F /* TitleTableViewCell.swift */; };
+		3204ED0927DE4FED00D4931F /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3204ED0827DE4FED00D4931F /* TitleViewModel.swift */; };
 		320F61FE27DCEEF200E27828 /* TrendingShowsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F61FD27DCEEF200E27828 /* TrendingShowsResponse.swift */; };
 		320F620027DCF29400E27828 /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 320F61FF27DCF29400E27828 /* TitleCollectionViewCell.swift */; };
 		320F620327DCF3BA00E27828 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 320F620227DCF3BA00E27828 /* SDWebImage */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3204ED0627DE138500D4931F /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
+		3204ED0827DE4FED00D4931F /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
 		320F61FD27DCEEF200E27828 /* TrendingShowsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingShowsResponse.swift; sourceTree = "<group>"; };
 		320F61FF27DCF29400E27828 /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		3221814527DB50AF00CD7C16 /* Netflix Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Netflix Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +106,7 @@
 		3221816527DB558800CD7C16 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				3204ED0627DE138500D4931F /* TitleTableViewCell.swift */,
 				3221816927DB77F000CD7C16 /* HeroHeaderUIView.swift */,
 				3221816727DB55DD00CD7C16 /* CollectionViewTableViewCell.swift */,
 				320F61FF27DCF29400E27828 /* TitleCollectionViewCell.swift */,
@@ -112,6 +117,7 @@
 		3221816627DB558B00CD7C16 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				3204ED0827DE4FED00D4931F /* TitleViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -208,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3204ED0727DE138500D4931F /* TitleTableViewCell.swift in Sources */,
 				3221816227DB521700CD7C16 /* UpcomingViewController.swift in Sources */,
 				320F620027DCF29400E27828 /* TitleCollectionViewCell.swift in Sources */,
 				32B1B32A27DB943700A829AB /* APICaller.swift in Sources */,
@@ -221,6 +228,7 @@
 				3221814927DB50AF00CD7C16 /* AppDelegate.swift in Sources */,
 				3221814B27DB50AF00CD7C16 /* SceneDelegate.swift in Sources */,
 				3221815D27DB51F000CD7C16 /* HomeViewController.swift in Sources */,
+				3204ED0927DE4FED00D4931F /* TitleViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
