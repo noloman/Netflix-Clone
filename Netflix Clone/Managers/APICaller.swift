@@ -10,6 +10,8 @@ import UIKit
 struct Constants {
     static let API_KEY = "06cd3aafde48e70efdd2eb19807195c4"
     static let baseURL = "https://api.themoviedb.org"
+    static let YOUTUBE_API_KEY = "AIzaSyDLSqxs063N_Fn1DIGsYLFXwfoFqrIQt-4"
+    static let YOUTUBE_BASE_URL = "https://youtube.googleapis.com/youtube/v3/search?"
 }
 
 enum APIError: Error {
@@ -60,5 +62,12 @@ class APICaller {
         guard let url = URL(string: "\(Constants.baseURL)/3/search/movie?api_key=\(Constants.API_KEY)&query=\(query)") else { return nil }
         let (data, _) = try await URLSession.shared.data(from: url)
         return try JSONDecoder().decode(TrendingMoviesResponse.self, from: data)
+    }
+    
+    func getMovie(with query: String) async throws -> YoutubeSearchResponse? {
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else { return nil }
+        guard let url = URL(string: "\(Constants.YOUTUBE_BASE_URL)q=\(query)&key=\(Constants.YOUTUBE_API_KEY)") else { return nil }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return try JSONDecoder().decode(YoutubeSearchResponse.self, from: data)
     }
 }

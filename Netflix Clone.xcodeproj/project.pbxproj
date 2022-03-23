@@ -23,6 +23,9 @@
 		3221816827DB55DD00CD7C16 /* CollectionViewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221816727DB55DD00CD7C16 /* CollectionViewTableViewCell.swift */; };
 		3221816A27DB77F000CD7C16 /* HeroHeaderUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3221816927DB77F000CD7C16 /* HeroHeaderUIView.swift */; };
 		3233F0F727DE5A2800B0B044 /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3233F0F627DE5A2800B0B044 /* SearchResultsViewController.swift */; };
+		323E900E27E8E28C00D06D2E /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E900D27E8E28C00D06D2E /* YoutubeSearchResponse.swift */; };
+		323E901027E8E3EE00D06D2E /* YoutubePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E900F27E8E3EE00D06D2E /* YoutubePlayerViewController.swift */; };
+		323E901227EA0A0C00D06D2E /* YoutubeTrailerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 323E901127EA0A0B00D06D2E /* YoutubeTrailerModel.swift */; };
 		32B1B32A27DB943700A829AB /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B1B32927DB943700A829AB /* APICaller.swift */; };
 		32B1B32D27DB9DF800A829AB /* TrendingMoviesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32B1B32C27DB9DF800A829AB /* TrendingMoviesResponse.swift */; };
 /* End PBXBuildFile section */
@@ -45,6 +48,9 @@
 		3221816727DB55DD00CD7C16 /* CollectionViewTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewTableViewCell.swift; sourceTree = "<group>"; };
 		3221816927DB77F000CD7C16 /* HeroHeaderUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeroHeaderUIView.swift; sourceTree = "<group>"; };
 		3233F0F627DE5A2800B0B044 /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		323E900D27E8E28C00D06D2E /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
+		323E900F27E8E3EE00D06D2E /* YoutubePlayerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubePlayerViewController.swift; sourceTree = "<group>"; };
+		323E901127EA0A0B00D06D2E /* YoutubeTrailerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeTrailerModel.swift; sourceTree = "<group>"; };
 		32B1B32927DB943700A829AB /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		32B1B32C27DB9DF800A829AB /* TrendingMoviesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingMoviesResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +108,7 @@
 				3221815C27DB51F000CD7C16 /* HomeViewController.swift */,
 				3221816327DB528F00CD7C16 /* DownloadsViewController.swift */,
 				3233F0F627DE5A2800B0B044 /* SearchResultsViewController.swift */,
+				323E900F27E8E3EE00D06D2E /* YoutubePlayerViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -138,6 +145,8 @@
 			children = (
 				32B1B32C27DB9DF800A829AB /* TrendingMoviesResponse.swift */,
 				320F61FD27DCEEF200E27828 /* TrendingShowsResponse.swift */,
+				323E900D27E8E28C00D06D2E /* YoutubeSearchResponse.swift */,
+				323E901127EA0A0B00D06D2E /* YoutubeTrailerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -217,6 +226,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				323E901227EA0A0C00D06D2E /* YoutubeTrailerModel.swift in Sources */,
 				3204ED0727DE138500D4931F /* TitleTableViewCell.swift in Sources */,
 				3221816227DB521700CD7C16 /* UpcomingViewController.swift in Sources */,
 				320F620027DCF29400E27828 /* TitleCollectionViewCell.swift in Sources */,
@@ -228,6 +238,8 @@
 				3221816427DB528F00CD7C16 /* DownloadsViewController.swift in Sources */,
 				3233F0F727DE5A2800B0B044 /* SearchResultsViewController.swift in Sources */,
 				32B1B32D27DB9DF800A829AB /* TrendingMoviesResponse.swift in Sources */,
+				323E901027E8E3EE00D06D2E /* YoutubePlayerViewController.swift in Sources */,
+				323E900E27E8E28C00D06D2E /* YoutubeSearchResponse.swift in Sources */,
 				3221814D27DB50AF00CD7C16 /* MainTabBarViewController.swift in Sources */,
 				3221814927DB50AF00CD7C16 /* AppDelegate.swift in Sources */,
 				3221814B27DB50AF00CD7C16 /* SceneDelegate.swift in Sources */,

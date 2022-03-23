@@ -88,7 +88,7 @@ class HomeViewController: UIViewController {
         return nil
     }
     
-    private func getTopRatedMovies() async -> TrendingMoviesResponse?{
+    private func getTopRatedMovies() async -> TrendingMoviesResponse? {
         do {
             return try await APICaller.shared.getTopRatedMovies()
         } catch APIError.failedToGetData {
@@ -126,6 +126,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else {
             return UITableViewCell()
         }
+
+        cell.delegate = self
         
         switch indexPath.section {
         case Sections.Popular.rawValue:
@@ -194,5 +196,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let offset = scrollView.contentOffset.y + defaultOffset
         
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+    }
+}
+
+extension HomeViewController: CollectionViewTableViewCellDelegate {
+    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, _ trailerModel: YoutubeTrailerModel) {
+        let vc = YoutubePlayerViewController()
+        vc.configure(with: trailerModel)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

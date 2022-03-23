@@ -7,8 +7,14 @@
 
 import UIKit
 
+protocol CollectionViewTableViewCellDelegate: AnyObject {
+    func collectionViewTableViewCellDidTapCell(_ cell: CollectionViewTableViewCell, _ trailerModel: YoutubeTrailerModel)
+}
+
 class CollectionViewTableViewCell: UITableViewCell {
     static let identifier = "CollectionViewTableViewCell"
+    
+    weak var delegate: CollectionViewTableViewCellDelegate?
     
     var titles = [Result]()
     
@@ -56,7 +62,26 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
         }
         return cell
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let title = titles[indexPath.row]
+        guard let titleName = title.name ?? title.title else { return }
+        
+        Task {
+            do {
+                let results = try await APICaller.shared.getMovie(with: "\(title) trailer")
+                guard let id = results?.items.first?.id else { return }
+                let model = YoutubeTrailerModel(title: titleName, overview: titles[indexPath.row].overview, videoElementId: id)
+                delegate?.collectionViewTableViewCellDidTapCell(self, model)
+            } catch {
+                print(error)
+            }
+        }
     }
 }
