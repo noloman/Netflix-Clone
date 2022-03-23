@@ -64,4 +64,22 @@ extension UpcomingViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let movie = movies[indexPath.row]
+        
+        guard let titleName = movie.originalTitle ?? movie.originalName else {
+            return
+        }
+        
+        Task {
+            let results = try await APICaller.shared.getMovie(with: titleName)
+            let vc = YoutubePlayerViewController()
+            guard let videoId = results?.items.first?.id else { return }
+            vc.configure(with: YoutubeTrailerModel(title: titleName, overview: movie.overview, videoElementId: videoId))
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }

@@ -8,9 +8,15 @@
 import Foundation
 import UIKit
 
+protocol SearchResultsViewControllerDelegate: AnyObject {
+    func searchResultsViewControllerDidTapItem(_ model: YoutubeTrailerModel)
+}
+
 class SearchResultsViewController: UIViewController {
     
     var movies = [Result]()
+    
+    weak var delegate: SearchResultsViewControllerDelegate?
     
     let searchResultsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
@@ -48,5 +54,22 @@ extension SearchResultsViewController: UICollectionViewDelegate, UICollectionVie
         let movie = movies[indexPath.row]
         cell.configure(with: movie.posterPath ?? "")
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let movie = movies[indexPath.row]
+        guard let movieTitle = movie.title ?? movie.name else { return }
+        Task {
+            do {
+                let results = try await APICaller.shared.getMovie(with: movieTitle)
+                guard let youtubeMovieId = results?.items.first?.id else { return }
+                let model = YoutubeTrailerModel(title: movieTitle, overview: movie.overview, videoElementId: youtubeMovieId)
+                delegate?.searchResultsViewControllerDidTapItem(model)
+            } catch {
+                print("\(#file), \(#function): \(error)")
+            }
+        }
     }
 }

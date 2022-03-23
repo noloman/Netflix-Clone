@@ -76,9 +76,33 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 140
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let movie = movies[indexPath.row]
+        
+        guard let titleName = movie.originalTitle ?? movie.originalName else {
+            return
+        }
+        
+        Task {
+            let results = try await APICaller.shared.getMovie(with: titleName)
+            let vc = YoutubePlayerViewController()
+            guard let videoId = results?.items.first?.id else { return }
+            vc.configure(with: YoutubeTrailerModel(title: titleName, overview: movie.overview, videoElementId: videoId))
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
-extension SearchViewController: UISearchResultsUpdating {
+extension SearchViewController: UISearchResultsUpdating, SearchResultsViewControllerDelegate {
+    func searchResultsViewControllerDidTapItem(_ model: YoutubeTrailerModel) {
+        let vc = YoutubePlayerViewController()
+        vc.configure(with: model)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
         
@@ -86,8 +110,11 @@ extension SearchViewController: UISearchResultsUpdating {
               !query.trimmingCharacters(in: .whitespaces).isEmpty,
               query.trimmingCharacters(in: .whitespaces).count >= 3,
               let resultsController = searchController.searchResultsController as? SearchResultsViewController else {
-                  return
-              }
+            return
+        }
+        
+        resultsController.delegate = self
+        
         Task {
             let searchResults = try? await APICaller.shared.search(query)
             if let searchResults = searchResults {
