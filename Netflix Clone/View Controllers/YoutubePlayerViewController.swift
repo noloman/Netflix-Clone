@@ -84,7 +84,8 @@ class YoutubePlayerViewController: UIViewController {
         titleLabel.text = model.title
         overviewLabel.text = model.overview
         
-        guard let url = URL(string: "https://www.youtube.com/embed/\(model.videoElementId.videoId)") else { return }
+        guard let videoId = model.videoElementId.videoId else { return }
+        guard let url = URL(string: "https://www.youtube.com/embed/\(videoId)") else { return }
         
         webView.load(URLRequest(url: url))
     }
