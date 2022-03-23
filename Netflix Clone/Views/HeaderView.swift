@@ -7,19 +7,19 @@
 
 import UIKit
 
-class HeroHeaderUIView: UIView {
+class HeaderView: UIView {
     
     private let downloadButton: UIButton = {
         let button = UIButton()
-         button.setTitle("Download", for: .normal)
-         button.layer.borderColor = UIColor.systemBackground.cgColor
-         button.layer.borderWidth = 1
-         button.translatesAutoresizingMaskIntoConstraints = false
-         return button
+        button.setTitle("Download", for: .normal)
+        button.layer.borderColor = UIColor.systemBackground.cgColor
+        button.layer.borderWidth = 1
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
     }()
     
     private let playButton: UIButton = {
-       let button = UIButton()
+        let button = UIButton()
         button.setTitle("Play", for: .normal)
         button.layer.borderColor = UIColor.systemBackground.cgColor
         button.layer.borderWidth = 1
@@ -47,10 +47,19 @@ class HeroHeaderUIView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         heroImageView.frame = bounds
+        heroImageView.contentMode = .scaleAspectFill
+        heroImageView.clipsToBounds = true
+        heroImageView.image = UIImage(named: "LordOfTheRingsImage")
     }
     
     required init?(coder: NSCoder) {
         fatalError()
+    }
+    
+    func configure(with model: Result) {
+        guard let posterPath = model.posterPath else { return }
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(posterPath)") else { return }
+        heroImageView.sd_setImage(with: url, completed: nil)
     }
     
     private func applyConstraints() {
