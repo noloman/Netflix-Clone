@@ -49,6 +49,17 @@ class CollectionViewTableViewCell: UITableViewCell {
         self.titles = model
         self.collectionView.reloadData()
     }
+    
+    func downloadTitle(with model: Result) {
+        Task {
+            do {
+                try await DataPersistenceManager.shared.downloadTitle(model: model)
+                NotificationCenter.default.post(Notification(name: Notification.Name("downloaded")))
+            } catch {
+                print(error)
+            }
+        }
+    }
 }
 
 extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -88,7 +99,7 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate, UICollectionVie
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
             let downloadAction = UIAction(title: "Download", image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) { _ in
-                print("Download tapped")
+                self.downloadTitle(with: self.titles[indexPath.row])
             }
             return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [downloadAction])
         }
